@@ -1,2 +1,2 @@
-# ahorcado
-Juego del ahorcado (en desarrollo)
+# Proyecto ahorcado
+Comenzamos a desarrollar el ahorcado.
