@@ -24,12 +24,12 @@ public class Palabra {
 	private char[] letrasFallidas = new char[NUM_LETRAS_ABECEDARIO];
 
 	/**
-	 * 
+	 * Elige la palabra para adivinar.
 	 */
-	public String elegirPalabra() {
+	public void elegirPalabra() {
 		String[] palabras = { "Jirafa", "Perro", "Gato", "Gallo", "Elefante", "Rata", "Tortuga" };
 		String elegida = palabras[(int) (Math.round(Math.random() * (palabras.length - 1)))];
-		return elegida;
+		palabraOculta = elegida;
 	}
 
 	/**
@@ -69,6 +69,9 @@ public class Palabra {
 			return true;
 		}
 	}
+	/**
+	* Introduce una letra en un hueco vacio.
+	*/
 
 	private void insertarLetra(char letra, char[] destino) {
 		// inserta la letra en la primera posicion vacía
@@ -85,7 +88,37 @@ public class Palabra {
 	 * fallidas
 	 */
 	public void mostrarResultados() {
+	
+	char[] descompuesta = palabraOculta.toCharArray();
+	
+	System.out.print("Progreso: ");
+	for(int i=0; i< descompuesta.length; i++){
+		boolean estaEnDescubiertas = false;
+		for(int j=0; j<letrasDescubiertas; i++){
+			
+			if(descompuesta[i] == letrasDescubiertas[j]) {
+				estaEnDescubiertas = true;
+				break;
+		}
 	}
+		if (estaEnDescubiertas) System.out.print(descompuesta[i]);
+		else System.out.print("_");
+	}
+		System.out.println();
+
+		System.out.println("Letras acertadas: ");
+		for(int i=0; i<letrasDescubiertas.length; i++){
+			if(letrasDescubiertas[i] != '\u0000') System.out.println(letrasDescubiertas[i]);
+		}
+
+		System.out.println();
+
+		System.out.println("Letras falladas: ");
+		for (int i=0; i< letrasFallidas.length; i++) {
+			if(letrasFallidas[i] !='\u0000')System.out.println(letrasFallidas[i]);
+		}
+	}
+
 
 	/**
 	 * comprueba si hemos acertado todas las letras
